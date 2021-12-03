@@ -42,7 +42,7 @@ define([
 
       postMixInProperties: function(){
         this.inherited(arguments);
-        lang.mixin(this.nls, window.jimuNls.common);
+        lang.mixin(this.nls, window.jimuNls.common, window.jimuNls.filterBuilder);
       },
 
       postCreate: function() {

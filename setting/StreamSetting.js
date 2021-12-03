@@ -31,12 +31,13 @@ define([
   'esri/symbols/jsonUtils',
   'jimu/dijit/CheckBox',
   'jimu/dijit/SymbolPicker',
+  'jimu/dijit/Message',
   './FilterConfigPopup',
   '../FilterUtil',
   'jimu/dijit/LoadingShelter'
 ],
 function(declare, lang, on, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, template,
-  domClass, domStyle, Evented, jsonUtils, CheckBox, SymbolPicker, FilterConfigPopup, FilterUtil) {
+  domClass, domStyle, Evented, jsonUtils, CheckBox, SymbolPicker, Message, FilterConfigPopup, FilterUtil) {
   return /** @alias module:widgets/Stream/setting/StreamSetting */ declare([_WidgetBase,
       _TemplatedMixin, _WidgetsInTemplateMixin, Evented], {
     baseClass: 'jimu-widget-stream-setting',
@@ -221,6 +222,10 @@ function(declare, lang, on, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixi
 
         this.own(on(filterConfigPopup, 'cancel', lang.hitch(this, function(){
           filterConfigPopup.close();
+        })));
+
+        this.own(on(filterConfigPopup, 'empty', lang.hitch(this, function(){
+          new Message({message: this.nls.setFilterTip})
         })));
 
         filterConfigPopup.startup();

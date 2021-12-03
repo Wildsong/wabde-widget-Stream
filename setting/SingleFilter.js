@@ -98,12 +98,16 @@ function(declare, lang, JSON, on, Evented, domStyle, _WidgetBase, _TemplatedMixi
     },
 
     getConfig: function(){
-      return {
-        inherited: this._inherited,
-        definitionExpression: this._definitionExpression,
-        name: this.filterNameEditor.get('value'),
-        filterInfo: this.filter.toJson()
-      };
+      var filterInfo = this.filter.toJson()
+      if (filterInfo) {
+        return {
+          inherited: this._inherited,
+          definitionExpression: this._definitionExpression,
+          name: this.filterNameEditor.get('value'),
+          filterInfo: filterInfo
+        };
+      }
+      return null;
     }
   });
 });

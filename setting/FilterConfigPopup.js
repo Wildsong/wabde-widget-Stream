@@ -73,8 +73,8 @@ function(declare, Evented, lang, html, Popup, LoadingIndicator, FilterConfig) {
 
     _accept: function(){
       var filterObj = this.filter.getConfig();
-      if (!filterObj) {
-        this.emit(null);
+      if (!filterObj || filterObj.length === 0) {
+        this.emit('empty');
       }else{
         this.emit('ok', filterObj);
       }

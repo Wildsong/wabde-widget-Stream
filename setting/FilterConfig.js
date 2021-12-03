@@ -90,11 +90,14 @@ function(declare, lang, array, on, domStyle, domClass, _WidgetBase, _TemplatedMi
     },
 
     getConfig: function(){
-      var currentFilter, config = [];
+      var currentFilter, config = [], configItem;
 
       array.forEach(this.filterList.getRows(), function(tr){
         currentFilter = tr.filter;
-        config.push(currentFilter.getConfig());
+        configItem = currentFilter.getConfig();
+        if (configItem) {
+          config.push(configItem);
+        }
       });
 
       return config;
